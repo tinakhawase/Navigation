@@ -17,7 +17,7 @@ class CollectionCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+    
        
     }
     
@@ -26,3 +26,4 @@ class CollectionCodeViewController: UIViewController {
 
 
 }
+

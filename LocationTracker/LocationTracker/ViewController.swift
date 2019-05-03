@@ -13,137 +13,88 @@ import Kingfisher
 
 
 class ViewController: UIViewController,CLLocationManagerDelegate {
-    var imagesArray :[UIImage] = []
+    var urlStringArray :[String] = []
+    private var counter : Int = 0
+    private var photosFromApi: Welcome
+    private var locationManager: CLLocationManager
+    var startLocation: CLLocation!
     
     @IBOutlet var collectionview: UICollectionView!
     
     @IBAction func GetStartPoint(_ sender: Any)  {
         print("okey")
-        
-        locationManager.stopUpdatingLocation()
+        start()
+      
+    }
+    func start(){
+        //locationManager.stopUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        //locationManager.requestLocation()
         
-        //locationManager()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        //       print("locations = \(locations)")
+    @IBAction func Stop(_ sender: Any) {
+        locationManager.stopUpdatingLocation()
+        urlStringArray.removeAll()
+        collectionview.reloadData()
         
-        
-        let latestLocation: CLLocation = locations[locations.count - 1]
-        
-        if startLocation == nil {
-            startLocation = latestLocation
-        }
-        
-        let distanceBetween: CLLocationDistance =
-            latestLocation.distance(from: startLocation)
-        //print(" The Distance is:\( distanceBetween) %.2f")
-        
-        if distanceBetween >= 100 {
-            print("I am here")
-            //distance.text = String(format: "%.2f", distanceBetween)
-            print(" The Distance is: \( distanceBetween) meters")
-            startLocation  = nil
-            getphotos(  )
-            counter+=1
-            print(counter)
-        }
-        //distance.text = String(format: "%.2f", distanceBetween)
     }
-    
-    
-    func startWhenInUse(_ sender: Any) {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    
-    
-    private var counter : Int = 0
-    
-    //private var arrayofpics : [UIImage]
-    private var photosFromApi: Welcome
-    private var locationManager: CLLocationManager
-    var startLocation: CLLocation!
-    //private var listner :
-    
     
     required init?(coder aDecoder: NSCoder) {
         self.photosFromApi = Welcome(page : 0, perPage: 0,photos : [], nextPage : "", prevPage: "")
-        
-        //
-        
-    
-        
         // Do any additional setup after loading the view, typically from a nib.
         locationManager = CLLocationManager()
         super.init(coder: aDecoder)
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        
+        // load the photosFromApi
+        getphotos()
+        
         print("after init")
         print(self.photosFromApi.photos.count)
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.collectionview.dataSource = self
         self.collectionview.delegate = self
         startLocation = nil
-        
-        
-        
-        //getphotos()
-//        print("after getSubjects")
-//        print(self.photosFromApi.photos.count)
-        
-        
+        print("after getSubjects")
     }
     
-    
-    
-    
-    
-    
-    
-    
-    /*
-     imageView.kf.setImage(with: url) { result in
-     switch result {
-     case .success(let value):
-     print("Image: \(value.image). Got from: \
-     (value.cacheType)")
-     case .failure(let error):
-     print("Error: \(error)")
-     }
-     }
-     
-     */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-
-    
-    
-    
-    
-    
-    func getphotos() {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        let latestLocation: CLLocation = locations[locations.count - 1]
+        if startLocation == nil {
+            startLocation = latestLocation
+        }
+       
+        let distanceBetween: CLLocationDistance =
+            latestLocation.distance(from: startLocation)
         
+        if distanceBetween >= 100 {
+            print("I am here")
+            print(" The Distance is: \( distanceBetween) meters")
+            startLocation  = nil
+            let url = photosFromApi.photos[counter].src.small
+            urlStringArray.append(url)
+            collectionview.reloadData()
+            counter+=1
+            print(counter)
+            if counter >= 15 {
+                counter = 0
+                print("counter has been reset")
+            }
+        }
+    }
+
+    func startWhenInUse(_ sender: Any) {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+  
+    func getphotos() {
         let apiUrl = "https://api.pexels.com/v1/curated?per_page=15&page=2"
         
         guard let baseUrl = URL(string: apiUrl)
@@ -163,17 +114,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 DispatchQueue.main.async { [weak self] in
                     
                     self?.photosFromApi = serverResponse as Welcome
-                     //imagesArray.append(url)
-                    self?.collectionview.reloadData()
-                    
-                    //print(self?.photosFromApi.photos.count)
+//                    self?.collectionview.reloadData()
                 }
             } else {
                 print("Oh noes! error!")
             }
-            
         }
-        
         task.resume()
     }
     
@@ -184,54 +130,63 @@ extension ViewController: UICollectionViewDelegate {
 }
 
 extension ViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("inside collecttion view 2")
-        print(self.photosFromApi.photos.count)
-        
-        return self.photosFromApi.photos.count
-    }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return urlStringArray.count
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("inside collecttion view 1")
-        print(self.photosFromApi.photos.count)
-        
-        let photocell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PexelsCollectionViewCell
-        //
-        if (counter == photosFromApi.photos.count ){
-            counter = 0
-            
-        }
-         let myphotos = photosFromApi.photos[indexPath.row]
-        //let myphotos = photosFromApi.photos[indexPath.row]
-        //let imageArray :[UIImage] = [photos]
-        let url = URL(string:myphotos.src.small)
-        photocell.imageView.kf.setImage(with: url)
-        var  imagesArray  = [url]
-         
-        //imagesArray.append(url)
-            
-        
-        
-        return photocell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PexelsCollectionViewCell
+        let urlString = urlStringArray[indexPath.row]
+        let url = URL(string:urlString)
+        cell.imageView.kf.setImage(with: url)
+        return cell
         
     }
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        print("inside collecttion view 2")
+//        print(self.photosFromApi.photos.count)
+//
+//        return self.photosFromApi.photos.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        print("inside collecttion view 1")
+//        print(self.photosFromApi.photos.count)
+//
+//        let photocell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PexelsCollectionViewCell
+//        //
+//        if (counter == photosFromApi.photos.count ){
+//            counter = 0
+//
+//        }
+//        //         let myphotos = photosFromApi.photos[counter]
+//        let myphotos = photosFromApi.photos[indexPath.row]
+//        //let imageArray :[UIImage] = [photos]
+//        let url = URL(string:myphotos.src.small)
+//        photocell.imageView.kf.setImage(with: url)
+//        var  imagesArray  = [url]
+//
+//        //imagesArray.append(url)
+//        return photocell
+//
+//    }
     
 }
 
 
 
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
