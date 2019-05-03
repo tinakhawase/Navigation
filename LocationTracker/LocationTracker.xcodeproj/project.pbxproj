@@ -14,6 +14,12 @@
 		E97576B8227A3D630046B0FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E97576B6227A3D630046B0FC /* LaunchScreen.storyboard */; };
 		E97576C3227A3D640046B0FC /* LocationTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97576C2227A3D640046B0FC /* LocationTrackerTests.swift */; };
 		E97576CE227A3D640046B0FC /* LocationTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97576CD227A3D640046B0FC /* LocationTrackerUITests.swift */; };
+		E97576DD227A42890046B0FC /* PexelsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97576DC227A42890046B0FC /* PexelsCollectionViewCell.swift */; };
+		E97576DF227A46B30046B0FC /* AllaboutCLLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97576DE227A46B30046B0FC /* AllaboutCLLocationViewController.swift */; };
+		E97576E1227B4A230046B0FC /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97576E0227B4A230046B0FC /* Struct.swift */; };
+		E97576E3227B4AA20046B0FC /* CollectionCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97576E2227B4AA20046B0FC /* CollectionCodeViewController.swift */; };
+		E97576E8227B59750046B0FC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97576E7227B59750046B0FC /* Kingfisher.framework */; };
+		E97576EA227B599B0046B0FC /* Kingfisher.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E97576E7227B59750046B0FC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +39,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E97576E9227B59860046B0FC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E97576EA227B599B0046B0FC /* Kingfisher.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E97576AA227A3D610046B0FC /* LocationTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97576AD227A3D610046B0FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +67,11 @@
 		E97576CD227A3D640046B0FC /* LocationTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTrackerUITests.swift; sourceTree = "<group>"; };
 		E97576CF227A3D640046B0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E97576DB227A3DA00046B0FC /* U9.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = U9.gpx; sourceTree = "<group>"; };
+		E97576DC227A42890046B0FC /* PexelsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PexelsCollectionViewCell.swift; sourceTree = "<group>"; };
+		E97576DE227A46B30046B0FC /* AllaboutCLLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllaboutCLLocationViewController.swift; sourceTree = "<group>"; };
+		E97576E0227B4A230046B0FC /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
+		E97576E2227B4AA20046B0FC /* CollectionCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCodeViewController.swift; sourceTree = "<group>"; };
+		E97576E7227B59750046B0FC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97576E8227B59750046B0FC /* Kingfisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +108,7 @@
 				E97576C1227A3D640046B0FC /* LocationTrackerTests */,
 				E97576CC227A3D640046B0FC /* LocationTrackerUITests */,
 				E97576AB227A3D610046B0FC /* Products */,
+				E97576E6227B59750046B0FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +131,10 @@
 				E97576B4227A3D630046B0FC /* Assets.xcassets */,
 				E97576B6227A3D630046B0FC /* LaunchScreen.storyboard */,
 				E97576B9227A3D630046B0FC /* Info.plist */,
+				E97576DC227A42890046B0FC /* PexelsCollectionViewCell.swift */,
+				E97576DE227A46B30046B0FC /* AllaboutCLLocationViewController.swift */,
+				E97576E0227B4A230046B0FC /* Struct.swift */,
+				E97576E2227B4AA20046B0FC /* CollectionCodeViewController.swift */,
 			);
 			path = LocationTracker;
 			sourceTree = "<group>";
@@ -127,6 +157,14 @@
 			path = LocationTrackerUITests;
 			sourceTree = "<group>";
 		};
+		E97576E6227B59750046B0FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E97576E7227B59750046B0FC /* Kingfisher.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,6 +175,7 @@
 				E97576A6227A3D610046B0FC /* Sources */,
 				E97576A7227A3D610046B0FC /* Frameworks */,
 				E97576A8227A3D610046B0FC /* Resources */,
+				E97576E9227B59860046B0FC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -195,6 +234,11 @@
 				TargetAttributes = {
 					E97576A9227A3D610046B0FC = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					E97576BD227A3D640046B0FC = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -258,8 +302,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97576E1227B4A230046B0FC /* Struct.swift in Sources */,
+				E97576E3227B4AA20046B0FC /* CollectionCodeViewController.swift in Sources */,
+				E97576DF227A46B30046B0FC /* AllaboutCLLocationViewController.swift in Sources */,
 				E97576B0227A3D610046B0FC /* ViewController.swift in Sources */,
 				E97576AE227A3D610046B0FC /* AppDelegate.swift in Sources */,
+				E97576DD227A42890046B0FC /* PexelsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +484,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V733AGVCML;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LocationTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,7 +507,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V733AGVCML;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LocationTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
