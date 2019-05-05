@@ -27,9 +27,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
       
     }
     func start(){
-        //locationManager.stopUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.allowsBackgroundLocationUpdates = true
         
     }
     
@@ -87,11 +87,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 print("counter has been reset")
             }
         }
-    }
-
-    func startWhenInUse(_ sender: Any) {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
     }
   
     func getphotos() {
